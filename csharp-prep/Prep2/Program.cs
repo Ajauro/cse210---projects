@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -33,7 +34,32 @@ class Program
             letter = "F";
         }
 
-        Console.WriteLine($"Your grade is: {letter}");
+        string sign = "";
+        int lastDigit  = x % 10;
+
+        if (lastDigit >= 7)
+        {
+            sign = "+";
+        }
+        else if (lastDigit < 3)
+        {
+            sign = "-";
+        }
+        else
+        {
+            sign = "";
+        }
+
+        if (x >= 93)
+        {
+            sign = "";
+        }
+        if (letter == "F")
+        {
+            sign = "";
+        }
+
+        Console.WriteLine($"Your grade is: {letter}{sign}");
 
         if ( x >= 70)
         {
@@ -43,5 +69,6 @@ class Program
         {
             Console.WriteLine("Opss, you need to get your grade back!");
         }
+
     }
 }
