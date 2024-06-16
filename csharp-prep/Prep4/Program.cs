@@ -29,7 +29,7 @@ class Program
                 sum += i;
             }
 
-            double average = (double) sum / numbers.Count;
+            float average = (float) sum / numbers.Count;
             int largestNumber = numbers[0];
             int smallestNumber = int.MaxValue;
             bool foundPositive = false;
