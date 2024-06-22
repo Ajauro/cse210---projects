@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 class Program
-{   
+{
     static Journal journal = new Journal();
 
     static void Main(string[] args)
@@ -17,40 +17,50 @@ class Program
             Menu();
             string choice = Console.ReadLine();
 
-            switch (choice)
+            if (choice == "1")
             {
-                case "1":
-                    NewEntry(promptGenerator);
-                    break;
-                case "2":
-                    journal.Display();
-                    break;
-                case "3":
-                    LoadJournal();
-                    break;
-                case "4":
-                    SaveJournal();
-                    break;
-                case "5":
-                    executar = false;
-                    break;
-                default:
-                    Console.WriteLine("Invalid opition!");
-                    break;
+                NewEntry(promptGenerator);
+                Console.WriteLine();
+            }
+            else if (choice == "2")
+            {
+                journal.Display();
+                Console.WriteLine();
+            }
+            else if (choice == "3")
+            {
+                LoadJournal();
+                Console.WriteLine("Journal loaded successfully!");
+                Console.WriteLine();
+            }
+            else if (choice == "4")
+            {
+                SaveJournal();
+                Console.WriteLine("Journal saved successfully!");
+                Console.WriteLine();
+            }
+            else if (choice == "5")
+            {
+                executar = false;
+            }
+            else
+            {
+                Console.WriteLine("Invalid option! Press any key to return to the menu");
+                Console.ReadKey();
+                Console.WriteLine();
             }
         }
     }
 
     static void Menu()
     {
-        Console.Clear();
         Console.WriteLine("Please select one of the following choices:");
         Console.WriteLine("1. Write");
         Console.WriteLine("2. Display");
         Console.WriteLine("3. Load");
         Console.WriteLine("4. Save");
         Console.WriteLine("5. Quit");
-        Console.WriteLine("What would you like to do? ");
+        Console.Write("What would you like to do? ");
     }
 
     static void NewEntry(PromptGenerator promptGenerator)
@@ -58,20 +68,18 @@ class Program
         string prompt = promptGenerator.GetRandomPrompt();
         Console.WriteLine(prompt);
         string response = Console.ReadLine();
-        journal.AddEntry(new Entry {_date = DateTime.Now.ToShortDateString(), _prompt = prompt, _entryText = response});
+        journal.AddEntry(new Entry { _date = DateTime.Now.ToShortDateString(), _prompt = prompt, _entryText = response });
     }
 
     static void SaveJournal()
     {
-        Console.Write("Enter the filename to save the journal: ");
-        string filename = Console.ReadLine();
+        string filename = "journal.csv";
         journal.SaveToFile(filename);
     }
 
     static void LoadJournal()
     {
-        Console.Write("Enter the filename to load the journal: ");
-        string filename = Console.ReadLine();
+        string filename = "journal.csv";
         journal.LoadFromFile(filename);
     }
 }
@@ -93,20 +101,26 @@ public class Journal
         }
     }
 
-    public void SaveToFile(string file) 
+    public void SaveToFile(string file)
     {
-        using (StreamWriter writer = new StreamWriter(file))
-        {
-            writer.WriteLine("Date,Prompt,Entry");
+        bool fileExists = File.Exists(file);
 
+        using (StreamWriter writer = new StreamWriter(file, true))
+        {
+            if (!fileExists)
+            {
+                writer.WriteLine("Date,Prompt,Entry");
+            }
             foreach (var entry in _entries)
             {
-                writer.WriteLine($"{entry._date}, {entry._prompt}, {entry._entryText}");
+                writer.WriteLine($"{entry._date},{entry._prompt},{entry._entryText}");
             }
         }
+
+        _entries.Clear();
     }
 
-    public void LoadFromFile (string file)
+    public void LoadFromFile(string file)
     {
         if (File.Exists(file))
         {
@@ -119,10 +133,10 @@ public class Journal
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
-                    var parts = line.Split(",");
+                    var parts = line.Split(new[] { ',' }, 3);
                     if (parts.Length == 3)
                     {
-                        AddEntry (new Entry {_date = parts[0], _prompt = parts[1], _entryText = parts[2]});
+                        AddEntry(new Entry { _date = parts[0], _prompt = parts[1], _entryText = parts[2] });
                     }
                 }
             }
@@ -136,9 +150,9 @@ public class Journal
 
 public class Entry
 {
-    public string _date {get; set;}
-    public string _prompt {get; set;}
-    public string _entryText {get; set;}
+    public string _date { get; set; }
+    public string _prompt { get; set; }
+    public string _entryText { get; set; }
 
     public void Display()
     {
