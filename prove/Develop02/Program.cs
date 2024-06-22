@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 
 class Program
-{
+{   
+    //create a instance
     static Journal journal = new Journal();
 
     static void Main(string[] args)
@@ -13,10 +14,11 @@ class Program
 
         bool executar = true;
         while (executar)
-        {
+        {   
+            //display menu to the user
             Menu();
             string choice = Console.ReadLine();
-
+            //perform actions based on user's choice
             if (choice == "1")
             {
                 NewEntry(promptGenerator);
@@ -25,7 +27,6 @@ class Program
             else if (choice == "2")
             {
                 journal.Display();
-                Console.WriteLine();
             }
             else if (choice == "3")
             {
@@ -44,14 +45,15 @@ class Program
                 executar = false;
             }
             else
-            {
+            {   
+                //inform the user of an invalid choice and prompt to return to the menu
                 Console.WriteLine("Invalid option! Press any key to return to the menu");
                 Console.ReadKey();
                 Console.WriteLine();
             }
         }
     }
-
+    //display the menu options
     static void Menu()
     {
         Console.WriteLine("Please select one of the following choices:");
@@ -62,21 +64,23 @@ class Program
         Console.WriteLine("5. Quit");
         Console.Write("What would you like to do? ");
     }
-
+    // create a new journal entry
     static void NewEntry(PromptGenerator promptGenerator)
-    {
+    {   
+        //get a random prompt fot the entry
         string prompt = promptGenerator.GetRandomPrompt();
         Console.WriteLine(prompt);
         string response = Console.ReadLine();
+        //add the new entry to the journal
         journal.AddEntry(new Entry { _date = DateTime.Now.ToShortDateString(), _prompt = prompt, _entryText = response });
     }
-
+    //save the journal to a file que ja foi criado
     static void SaveJournal()
     {
         string filename = "journal.csv";
         journal.SaveToFile(filename);
     }
-
+    //load the journal from a file que ja foi criado anteriormente
     static void LoadJournal()
     {
         string filename = "journal.csv";
@@ -88,11 +92,12 @@ public class Journal
 {
     private List<Entry> _entries = new List<Entry>();
 
+    //add a new entry to the journal
     public void AddEntry(Entry newEntry)
     {
         _entries.Add(newEntry);
     }
-
+    //display all entries in the journal
     public void Display()
     {
         foreach (var entry in _entries)
@@ -100,26 +105,28 @@ public class Journal
             entry.Display();
         }
     }
-
+    //save the entries to a file
     public void SaveToFile(string file)
     {
         bool fileExists = File.Exists(file);
 
         using (StreamWriter writer = new StreamWriter(file, true))
-        {
+        {   
+            //write header if the file doesn't exist
             if (!fileExists)
             {
                 writer.WriteLine("Date,Prompt,Entry");
             }
+            //write each entry to the file
             foreach (var entry in _entries)
             {
                 writer.WriteLine($"{entry._date},{entry._prompt},{entry._entryText}");
             }
         }
-
-        _entries.Clear();
+        //clear the entries after saving
+        //_entries.Clear();
     }
-
+    //load journal entries from a file
     public void LoadFromFile(string file)
     {
         if (File.Exists(file))
@@ -132,7 +139,8 @@ public class Journal
                 reader.ReadLine();
                 string line;
                 while ((line = reader.ReadLine()) != null)
-                {
+                {   
+                    //split the line into parts and add a new entry
                     var parts = line.Split(new[] { ',' }, 3);
                     if (parts.Length == 3)
                     {
@@ -141,19 +149,16 @@ public class Journal
                 }
             }
         }
-        else
-        {
-            Console.WriteLine("File not found");
-        }
     }
 }
 
 public class Entry
 {
-    public string _date { get; set; }
-    public string _prompt { get; set; }
-    public string _entryText { get; set; }
+    public string _date {get; set;}
+    public string _prompt {get; set;}
+    public string _entryText {get; set;}
 
+    //display the entry
     public void Display()
     {
         Console.WriteLine($"Date: {_date} - Prompt: {_prompt}");
