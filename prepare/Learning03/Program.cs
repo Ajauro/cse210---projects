@@ -2,9 +2,12 @@ using System;
 
 class Program
 {   
-
+    //In your Program.cs file, verify that you can call 
+    //all of these methods and get the correct values, 
+    //using setters to change the values and then getters 
+    //to retrieve these new values and then display them to the console.
     static void Main(string[] args)
-    {
+    {   
         Fraction f1 = new Fraction(1);
         Console.WriteLine(f1.GetFractionString());
         Console.WriteLine(f1.GetDecimalValue());
