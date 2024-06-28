@@ -75,6 +75,10 @@ class Program
         journal.AddEntry(new Entry { _date = DateTime.Now.ToShortDateString(), _prompt = prompt, _entryText = response });
     }
     //save the journal to a file que ja foi criado
+    //Showing Creativity and Exceeding Requirements
+    //Improve the process of saving and loading to save as a .csv 
+    //file that could be opened in Excel (make sure to account for quotation 
+    //marks and commas correctly in your content.
     static void SaveJournal()
     {
         string filename = "journal.csv";
