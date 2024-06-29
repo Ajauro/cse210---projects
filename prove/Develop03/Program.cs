@@ -36,7 +36,7 @@ class Program
             Console.Clear();
             Console.WriteLine(scripture.GetFullText());
 
-            Console.WriteLine("Press 'enter' to hide the words or type 'quit' to finish");
+            Console.Write("Press 'enter' to hide the words or type 'quit' to finish ");
             string input = Console.ReadLine();
             if (input.Trim().ToLower() == "quit")
             {
@@ -55,7 +55,7 @@ class Program
                     break;
                 }
 
-                Console.WriteLine("\nPress 'enter' to hide the words or type 'quit' to finish");
+                Console.Write("\nPress 'enter' to hide the words or type 'quit' to finish ");
                 input = Console.ReadLine();
                 if (input.Trim().ToLower() == "quit")
                 {
@@ -64,7 +64,7 @@ class Program
             }
             //Showing Creativity and Exceeding Requirements
             //perguntar ao usuario se ele gostaria de memorizare mais escrituras
-            Console.WriteLine("\nWould you like to memorize another scripture? (s/n)");
+            Console.Write("\nWould you like to memorize another scripture? (s/n) ");
             input = Console.ReadLine();
             if (input.Trim().ToLower() != "s")
             {
