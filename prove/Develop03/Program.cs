@@ -32,11 +32,11 @@ class Program
         {
             // Select a random scripture
             Scripture scripture = scriptures[random.Next(scriptures.Count)];
-            
+            // limpar o terminal
             Console.Clear();
-            Console.WriteLine(scripture.GetFullText());
+            Console.WriteLine(scripture.GetFullText()); //mostrar todo o texto antes de esconder as palavras
 
-            Console.Write("Press 'enter' to hide the words or type 'quit' to finish ");
+            Console.Write("Press 'enter' to hide the words or type 'quit' to finish: ");
             string input = Console.ReadLine();
             if (input.Trim().ToLower() == "quit")
             {
