@@ -5,28 +5,34 @@ using System;
 //do texto da escritura. Pode ocultar palavras e obter a exibição renderizada do texto.
 public class Scripture
 {
-    private Reference _reference;
-    private List<Word> _words;
+    private Reference _reference; //armazena a referencia
+    private List<Word> _words; //armazena a lista de objetos Word
     public Scripture(Reference reference, string text)
     {
         _reference = reference;
         _words = text.Split(" ").Select(word => new Word(word)).ToList();
     }
-    public void HideRandomWords( int numberToHide)
+    public void HideRandomWords( int numberToHide) //oculta um conjunto aleatório de palavra visíveis
     {
         Random random = new Random();
         List<Word> visibleWords = _words.Where(word => ! word.IsHidden()).ToList();
         List<Word> wordsToHide = visibleWords.OrderBy(x => random.Next()).Take(numberToHide).ToList();
+
         foreach (Word word in wordsToHide)
         {
             word.Hide();
         }
     }
-    public string GetDisplayText()
-    {   
-        return $"{_reference.GetDisplayText()} {string.Join(" ", _words.Select(word => word.GetDisplayText()))}";
+
+    public string GetFullText()
+    {
+        return $"{_reference.GetDisplayText()}\n{string.Join(" ", _words.Select(word => word.GetDisplayText()))}\n";
     }
-    public bool IsCompletelyHidden()
+    public string GetDisplayText() //retorna o texto da escritura com palavras ocultas
+    {   
+        return $"{_reference.GetDisplayText()}\n{string.Join(" ", _words.Select(word => word.GetDisplayText()))}\n";
+    }
+    public bool IsCompletelyHidden() //verifica se todas as palavras estão ocultas
     {
         return _words.All(word => word.IsHidden());
     }

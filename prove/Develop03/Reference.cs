@@ -5,11 +5,14 @@ using System;
 //Mantém o controle das informações do livro, capítulo e versículo.
 public class Reference 
 {
-    private string _book;
-    private int _chapter;
-    private int _verse;
-    private int _endVerse;
+    //_book, _chapter, _verse, _endVerse armazenam os detalhes da referencia
+    private string _book {get; set;}
+    private int _chapter {get; set;}
+    private int _verse {get; set;}
+    private int _endVerse {get; set;}
 
+    //public Reference() {}
+    //dois contrutores são criados para lidar com casos de versículo unico e versiculos compostos
     public Reference (string book, int chapter, int verse)
     {
         _book = book;
@@ -25,7 +28,7 @@ public class Reference
         _endVerse = endVerse;
     }
 
-    public string GetDisplayText()
+    public string GetDisplayText() //retorna a referencia formatada
     {
         if (_verse == _endVerse)
         {
