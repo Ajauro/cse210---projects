@@ -13,7 +13,7 @@ public class Program
         Console.WriteLine(student2.GetSummary());
         Console.WriteLine(student2.GetHomeworkList());
         Console.WriteLine("----------------");
-        
+        //Writing Assigment
         WritingAssignment student3 = new WritingAssignment("Johnny Sousa", "Literature", "The Little Prince");
         Console.WriteLine(student3.GetSummary());
         Console.WriteLine(student3.GetWritingInfo());
