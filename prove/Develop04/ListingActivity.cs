@@ -39,7 +39,7 @@ public class ListingActivity : Activity //child
         Console.WriteLine(prompt);
         Console.WriteLine();
         Console.Write("You may begin in: ");
-        ShowCountDown(5);
+        ShowCountDown(5); 
         Console.WriteLine();
         //Console.WriteLine(">>> "); // Mostrar a mensagem após a contagem regressiva
         List<string> userResponse = GetListFromUser(); //get the user's responses
