@@ -15,3 +15,7 @@ class Program
     }
 }
 
+//Showing Creativity and Exceeding Requirements
+//added another option to the menu, allowing you to exclude goals.
+//It can be automatically deleted from the list, but can only be 
+//permanently deleted from the file after saving before closing the program.
