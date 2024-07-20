@@ -34,4 +34,9 @@ public class Product
     {
         return _price;
     }
+
+    public int GetQuantity()
+    {
+        return _quantity;
+    }
 }

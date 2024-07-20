@@ -20,13 +20,17 @@ class Program
 
         Order order2 = new Order(customer2);
         order2.AddProduct(product3);
+        order2.AddProduct(product2);
 
-        Console.WriteLine(order1.GetPackingLabel());
+        Console.WriteLine();
         Console.WriteLine(order1.GetShippingLabel());
-        Console.WriteLine($"Total Cost: ${order1.GetTotalCost()}");
+        Console.WriteLine(order1.GetPackingLabel());
+        Console.WriteLine($"Total Cost: ${order1.GetTotalCost():0.00}");
+        Console.WriteLine();
 
-        Console.WriteLine(order2.GetPackingLabel());
         Console.WriteLine(order2.GetShippingLabel());
-        Console.WriteLine($"Total Cost: ${order2.GetTotalCost()}");
+         Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine($"Total Cost: ${order2.GetTotalCost():0.00}");
+        Console.WriteLine();
     }
 }
