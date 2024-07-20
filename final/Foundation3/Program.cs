@@ -5,14 +5,15 @@ class Program
     static void Main(string[] args)
     {
         // Cria uma instância da classe Address
-        Address address = new Address("742 Main St", "Salt Lake", "Utah", "82456");
-
+        Address address1 = new Address("742 Main St", "Salt Lake", "Utah", "82456");
+        Address address2 = new Address("1032 Freedom St", "São Paulo", "Brazil", "70154012");
+        Address address3 = new Address("159 King St", "Madrid", "Espanha", "1456279");
         // Cria instâncias para cada tipo de evento
-        Lecture lecture = new Lecture("Book of Mormon Devotional", "Talk about Come, Follow Me program", "2024-09-20", "8:00 PM", address, "Brother Nephi Lehi", 150);
+        Lecture lecture = new Lecture("Book of Mormon Devotional", "Talk about Come, Follow Me program", "2024-09-20", "8:00 PM", address1, "Brother Nephi Lehi", 150);
 
-        Reception reception = new Reception("PRO English", "Annual graduation", "2024-10-11", "4:00 PM", address, "rsvp@eventproenglish.com");
+        Reception reception = new Reception("PRO English", "Annual graduation", "2024-10-11", "4:00 PM", address2, "rsvp@eventproenglish.com");
 
-        OutdoorGathering outdoorGathering = new OutdoorGathering("Music Festival", "Concert by various international groups", "2024-11-04", "6:00 PM", address, "Partly cloudy with a chance of rain");
+        OutdoorGathering outdoorGathering = new OutdoorGathering("Music Festival", "Concert by various international groups", "2024-11-04", "6:00 PM", address3, "Partly cloudy with a chance of rain");
 
         // Marketing messages
         Console.WriteLine("LECTURE STANDARD DETAILS:\n" + lecture.GetStandardDetails());
