@@ -23,8 +23,13 @@ public class Order
         {
             totalCost += product.GetTotalCost();
         }
-        totalCost += _customer.LocalUSA() ? 5 : 35;
+        totalCost += GetShippingCost();
         return totalCost;
+    }
+
+    public double GetShippingCost()
+    {
+        return _customer.LocalUSA() ? 5 : 35;
     }
 
     public string GetPackingLabel()
@@ -35,6 +40,7 @@ public class Order
             label += $">>> {product.GetName()} (ID: {product.GetProductId()})\n";
 
             label += $"Unit Price: ${product.GetPrice()} | Quantity: {product.GetQuantity()}\n";
+
         }
         return label;
     }

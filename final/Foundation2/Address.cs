@@ -15,7 +15,7 @@ public class Address
         this._country = country;
     }
 
-    public bool localUSA()
+    public bool LocalUSA()
     {
         return _country.ToLower() == "usa";
     }

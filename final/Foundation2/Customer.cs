@@ -15,7 +15,7 @@ public class Customer
 
     public bool LocalUSA()
     {
-        return _address.localUSA();
+        return _address.LocalUSA();
     }
 
     public string GetName()

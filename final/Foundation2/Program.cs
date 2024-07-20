@@ -1,10 +1,8 @@
-using System;
-
 class Program
 {
     static void Main()
     {
-        Address address1 = new Address("505 Maint St", "Sacramento", "CA", "United States");
+        Address address1 = new Address("505 Main St", "Sacramento", "CA", "USA");
         Address address2 = new Address("209 Strawberry St", "London", "EN", "United Kingdom");
 
         Customer customer1 = new Customer("Tal Smith", address1);
@@ -25,11 +23,13 @@ class Program
         Console.WriteLine();
         Console.WriteLine(order1.GetShippingLabel());
         Console.WriteLine(order1.GetPackingLabel());
+        Console.WriteLine($"Shipping Cost: ${order1.GetShippingCost():0.00}");
         Console.WriteLine($"Total Cost: ${order1.GetTotalCost():0.00}");
         Console.WriteLine();
 
         Console.WriteLine(order2.GetShippingLabel());
-         Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine($"Shipping Cost: ${order2.GetShippingCost():0.00}");
         Console.WriteLine($"Total Cost: ${order2.GetTotalCost():0.00}");
         Console.WriteLine();
     }
