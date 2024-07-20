@@ -1,5 +1,7 @@
 using System;
 
+
+//this. é uma palavra chave que se refere a instancia atual da classe, usada para acessar membros da propria classe
 public class Customer
 {
     private string _name;
@@ -7,7 +9,7 @@ public class Customer
 
     public Customer(string name, Address address)
     {
-        this._name = name;
+        this._name = name; //this melhora a clareza do código
         this._address = address;
     }
 
