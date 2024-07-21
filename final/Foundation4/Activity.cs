@@ -30,7 +30,7 @@ public abstract class Activity
 
     public virtual string GetSummary()
     {
-        return $"{Date} {GetType().Name} ({Duration} min) - Distance: {GetDistance():F1} miles, Speed: {GetSpeed():F1} mph, Pace: {GetPace():F1} min per mile";
+        return $"{Date} {GetType().Name} ({Duration} min) - Distance: {GetDistance():F1} miles, Speed: {GetSpeed():F1} mph, Pace: {GetPace():F1} min per mile\n";
     }
 
     private string FormatDate(DateTime date)
